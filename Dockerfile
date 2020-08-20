@@ -5,8 +5,8 @@ WORKDIR /usr/src/app
 ENV PYTHONPATH "${PYTHONPATH}:/usr/src/app"
 RUN pip install --upgrade setuptools
 
-COPY ./requirements.txt /usr/src/app
-RUN pip install -r requirements.txt
+COPY ./requirements_dask.txt /usr/src/app
+RUN pip install -r requirements_dask.txt
 
 
 COPY ./app /usr/src/app
