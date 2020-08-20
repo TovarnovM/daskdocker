@@ -6,12 +6,18 @@ services:
     image: daskdocker
     hostname: dask-scheduler
     ports:
-      - "8786:8786"
-      - "8787:8787"
+      - "192.168.0.100:8786:8786"
+      - "192.168.0.100:8787:8787"
     command: ["dask-scheduler"]
 
   worker:
     build: .
     image: daskdocker
     hostname: dask-worker
-    command: ["dask-worker", "tcp://scheduler:8786"]
+    command: ["dask-worker", "--nprocs=11", "tcp://scheduler:8786"]
+
+# "C:\Program Files\Docker\Docker\Docker Desktop.exe"
+# docker run --rm --name worker --network="host" daskdocker dask-worker 192.168.0.100:8786
+# docker stop worker
+# docker save -o image.tar daskdocker
+# docker load -i image.tar
